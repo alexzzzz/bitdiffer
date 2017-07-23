@@ -39,6 +39,10 @@ namespace BitDiffer.Common.Model
 				{
 					_children.Add(new ClassDetail(this, nested));
 				}
+				else if (type.IsValueType && type.IsPrimitive == false)
+				{
+					_children.Add(new StructDetail(this, type));
+				}
 			}
 		}
 

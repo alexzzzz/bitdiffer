@@ -132,6 +132,10 @@ namespace BitDiffer.Common.Model
 			{
 				csb.AppendKeyword("class ");
 			}
+			else if (type.IsValueType && !type.IsPrimitive)
+			{
+				csb.AppendKeyword("struct ");
+			}
 
 			csb.AppendText(_name);
 

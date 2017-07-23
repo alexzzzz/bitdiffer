@@ -89,6 +89,10 @@ namespace BitDiffer.Client.Models
 						return Resources.VSObject_Class;
 				}
 			}
+			else if (type == typeof(StructDetail))
+			{
+				return Resources.VSObject_Structure;
+			}
 			else if (type == typeof(EnumDetail))
 			{
 				switch (visibility)

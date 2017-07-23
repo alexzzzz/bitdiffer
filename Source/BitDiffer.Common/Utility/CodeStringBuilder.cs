@@ -282,7 +282,7 @@ namespace BitDiffer.Common.Utility
 
 			AppendText(" : ");
 
-			if ((type.BaseType != null) && (type.BaseType != typeof(object)))
+			if ((type.BaseType != null) && (type.BaseType != typeof(object)) && type.BaseType != typeof(ValueType))
 			{
 				AppendType(type.BaseType);
 				AppendText(", ");

@@ -78,9 +78,13 @@ namespace BitDiffer.Common.Model
                         {
                             ns.Children.Add(new ClassDetail(ns, type));
                         }
+						else if (type.IsValueType && type.IsPrimitive == false)
+	                    {
+		                    ns.Children.Add(new StructDetail(ns, type));
+	                    }
                     }
 
-                }
+				}
                 catch (TypeLoadException tle)
                 {
                     Log.Warn("Failed loading Type '{0}': {1}", type.FullName, tle.Message);
