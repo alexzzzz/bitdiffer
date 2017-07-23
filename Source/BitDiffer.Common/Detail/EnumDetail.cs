@@ -24,14 +24,26 @@ namespace BitDiffer.Common.Model
 
 			foreach (string name in Enum.GetNames(type))
 			{
-				_children.Add(
-					new EnumItemDetail(
-						this,
-						name,
-						Convert.ToInt64(
-							type.GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static)
-								.GetRawConstantValue()),
-						_visibility));
+				var fieldInfo = type.GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+				var rawConstantValue = fieldInfo.GetRawConstantValue();
+				if (rawConstantValue is ulong)
+				{
+					_children.Add(
+						new EnumItemDetail(
+							this,
+							name,
+							(long)Convert.ToUInt64(rawConstantValue),
+							_visibility));
+				}
+				else
+				{
+					_children.Add(
+						new EnumItemDetail(
+							this,
+							name,
+							Convert.ToInt64(rawConstantValue),
+							_visibility));
+				}
 			}
 
 			CodeStringBuilder csb = new CodeStringBuilder();
